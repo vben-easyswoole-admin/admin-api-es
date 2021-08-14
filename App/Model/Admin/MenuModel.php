@@ -119,7 +119,7 @@ class MenuModel extends BaseModel
                 ->toArray();
         }    
             
-        $data = array_merge($menus,$parent_one,$parent_two)  
+        $data = array_merge($menus,$parent_one,$parent_two);
         
         return Helper::createTree($data);
     }
