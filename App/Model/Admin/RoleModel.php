@@ -7,7 +7,6 @@ namespace App\Model\Admin;
 use App\Model\BaseModel;
 use App\Utility\Helper;
 use EasySwoole\ORM\DbManager;
-use EasySwoole\EasySwoole\Logger;
 
 class RoleModel extends BaseModel
 {
