@@ -107,6 +107,8 @@ class Menu extends AuthBase
         //不同菜单参数过滤
         $params = $this->paramsFilter($params);
 
+        Logger::getInstance()->info(json_encode($params));
+
         $model = new MenuModel();
         $re = $model->updateMenu($id,$params);
 
