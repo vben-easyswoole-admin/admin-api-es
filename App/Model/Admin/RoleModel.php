@@ -49,7 +49,7 @@ class RoleModel extends BaseModel
             $params['limit'] = $this->limit;
         }
 
-        $list = $query->order('sort','DESC')
+        $list = $query->order('id','DESC')
             ->limit($params['limit'] * ($params['page'] - 1), $params['limit'])
             ->all();
 
