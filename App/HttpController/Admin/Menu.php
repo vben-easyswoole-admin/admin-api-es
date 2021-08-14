@@ -6,6 +6,7 @@ namespace App\HttpController\Admin;
 
 use App\Model\Admin\MenuModel;
 use App\Utility\Helper;
+use EasySwoole\EasySwoole\Logger;
 use EasySwoole\HttpAnnotation\AnnotationTag\Param;
 
 class Menu extends AuthBase
@@ -94,6 +95,8 @@ class Menu extends AuthBase
         $id = $this->request()->getQueryParam('id');
         $params = $this->request()->getRequestParam('type','menu_name','menu_pid','icon','route_path',
             'component','permission','status','sort','is_ext','show');
+
+        Logger::getInstance()->info(json_encode($params));
 
         //不同类型菜单参数验证
         $validata = $this->menuValidate($params);
