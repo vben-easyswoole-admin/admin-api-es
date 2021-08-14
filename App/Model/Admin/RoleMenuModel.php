@@ -15,4 +15,10 @@ class RoleMenuModel extends BaseModel
     {
         return $this->where('role_id',$role_ids,'IN')->column('menu_id');
     }
+
+
+    public function getRoleMenu($role_id)
+    {
+        return $this->where('role_id',$role_ids)->column('menu_id');
+    }
 }

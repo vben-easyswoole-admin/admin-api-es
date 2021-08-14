@@ -78,23 +78,16 @@ class RoleModel extends BaseModel
             if($role_id && $re){
                 // 提交事务
                 DbManager::getInstance()->commit();
-                Logger::getInstance()->info(json_encode($data));
-                Logger::getInstance()->info(11);
-
                 return true;
             }else{
                 // 回滚事务
                 DbManager::getInstance()->rollback();
-
-                Logger::getInstance()->info(22);
                 return false;
             }
 
         } catch(\Throwable  $e){
             // 回滚事务
             DbManager::getInstance()->rollback();
-            Logger::getInstance()->info(json_encode($data));
-            Logger::getInstance()->info($e->getMessage());
             return false;
         }
 
