@@ -102,7 +102,7 @@ class RoleModel extends BaseModel
             $menu_ids = $data['menu_ids'];
             unset($data['menu_ids']);
 
-            $role = $this->where('id',$data)->update($data);
+            $role = $this->where('id',$id)->update($data);
             $menu_ids_data = RoleMenuModel::create()->where('role_id',$id)->column('menu_id');
 
             $diff = array_diff($menu_ids,$menu_ids_data);
