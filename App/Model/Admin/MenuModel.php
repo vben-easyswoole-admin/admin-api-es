@@ -94,32 +94,40 @@ class MenuModel extends BaseModel
 
     public function getTreeList($ids = [])
     {
-
-        $parent_one = [];
-        $parent_two = [];
-        $query = $this->where('status',1);
         if($ids){
-            $query->where('id',$ids,'IN');
-        }
-        $menus = $query->order('sort','DESC')
-            ->all()
-            ->toArray();
-
-        //查找上级
-        $pids = array_unique(array_column($menus, 'menu_pid'));
-
-        $parent_one = $this->where('id',$pids,'IN')->order('sort','DESC')
-            ->all()
-            ->toArray();
-        if($parent_one){
-
-            $pid_one = array_unique(array_column($menus, 'menu_pid'));
-            $parent_two = $this->where('id',$pid_one,'IN')->order('sort','DESC')
+            $menus = $this->where('status',1)
+                ->where('id',$ids,'IN')
+                ->order('sort','DESC')
                 ->all()
                 ->toArray();
-        }    
-            
-        $data = array_merge($menus,$parent_one,$parent_two);
+
+            //默认向上找两层
+            $parent_one = [];
+            $parent_two = [];
+            $pid_one = array_unique(array_column($menus, 'menu_pid'));
+
+            if($pid_one){
+                $parent_one = $this->where('id',$pid_one,'IN')
+                    ->order('sort','DESC')
+                    ->all()
+                    ->toArray();
+                if($parent_one){
+                    $pid_two = array_unique(array_column($parent_one, 'menu_pid'));
+
+                    if($pid_two){
+                        $parent_two = $this->where('id',$pid_two,'IN')
+                            ->order('sort','DESC')
+                            ->all()
+                            ->toArray();
+                    }
+                }
+            }
+
+            $data = array_merge($menus,$parent_one,$parent_two);
+
+        }else{
+            $data = $this->where('status',1)->order('sort','DESC')->all()->toArray();
+        }
         
         return Helper::createTree($data);
     }
