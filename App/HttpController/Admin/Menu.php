@@ -42,7 +42,7 @@ class Menu extends AuthBase
     public function save()
     {
         $params = $this->request()->getRequestParam('type','menu_name','menu_pid','icon','route_path',
-            'component','permission','status','is_ext','show');
+            'component','permission','status','sort','is_ext','show');
 
         //不同类型菜单参数验证
         $validata = $this->menuValidate($params);
@@ -93,7 +93,7 @@ class Menu extends AuthBase
     {
         $id = $this->request()->getQueryParam('id');
         $params = $this->request()->getRequestParam('type','menu_name','menu_pid','icon','route_path',
-            'component','permission','status','is_ext','show');
+            'component','permission','status','sort','is_ext','show');
 
         //不同类型菜单参数验证
         $validata = $this->menuValidate($params);
@@ -195,7 +195,7 @@ class Menu extends AuthBase
                 break;
         }
 
-        return $params;
+        return array_filter($params);
     }
 
 
