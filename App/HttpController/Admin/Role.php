@@ -31,7 +31,7 @@ class Role extends AuthBase
     /**
      * @Param(name="role_name",required="",lengthMin="4",lengthMax="16")
      * @Param(name="remark",optional="",mbLengthMax="32")
-     * @Param(name="status",optional="",inArray=[0,1])
+     * @Param(name="status",required="",inArray=[0,1])
      * @Param(name="menu_ids",required="")
      */
     public function save()
@@ -71,7 +71,7 @@ class Role extends AuthBase
     /**
      * @Param(name="role_name",required="",lengthMin="4",lengthMax="16")
      * @Param(name="remark",optional="",mbLengthMax="32")
-     * @Param(name="status",optional="",inArray=[0,1])
+     * @Param(name="status",required="",inArray=[0,1])
      * @Param(name="menu_ids",required="")
      */
     public function update()
