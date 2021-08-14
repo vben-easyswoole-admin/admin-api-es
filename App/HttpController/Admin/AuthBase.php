@@ -56,7 +56,8 @@ class AuthBase extends AdminBase
             $accountRoleModel = new RoleModel();
             $role_ids = $accountRoleModel->getRoleStatus($account->id);
             if(!$role_ids){
-                return $this->response_error('账号被封禁');
+                $this->response_error('账号被封禁');
+                return false;
             }
 
             $cache_key = $this->cache_permission_key.$tokenData['account_id'];
