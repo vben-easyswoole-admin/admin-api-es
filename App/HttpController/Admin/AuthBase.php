@@ -63,9 +63,10 @@ class AuthBase extends AdminBase
             $cache_key = $this->cache_permission_key.$tokenData['account_id'];
             $permission = unserialize($this->redisInvokeGet($cache_key));
 
-            $urlstr = strtolower(substr($this->request()->getUri()->getPath(),1,-1));
+            $urlstr = $this->request()->getUri()->getPath();
+            $url = strtolower(substr($urlstr,1,strlen($urlstr)-1));
 
-            var_dump($permission,$urlstr);
+            var_dump($permission,$url);
 
             if(!in_array($urlstr,$permission)){
                 $this->response_error('权限不足',401);
