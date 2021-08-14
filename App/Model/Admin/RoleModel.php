@@ -106,6 +106,11 @@ class RoleModel extends BaseModel
             $menu_ids_data = RoleMenuModel::create()->where('role_id',$id)->column('menu_id');
 
             $diff = array_diff($menu_ids,$menu_ids_data);
+            Logger::getInstance()->info(json_encode($menu_ids));
+            Logger::getInstance()->info(json_encode($menu_ids_data));
+
+            Logger::getInstance()->info(json_encode($diff));
+
 
             if($diff){
                 $de = RoleMenuModel::create()->where('role_id',$id)->destroy();
@@ -134,7 +139,6 @@ class RoleModel extends BaseModel
         } catch(\Throwable  $e){
             // 回滚事务
             DbManager::getInstance()->rollback();
-            Logger::getInstance()->info(json_encode($e->getMessage()));
             return false;
         }
     }
