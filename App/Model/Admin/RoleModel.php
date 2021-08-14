@@ -106,6 +106,11 @@ class RoleModel extends BaseModel
             $menu_ids_data = RoleMenuModel::create()->where('role_id',$id)->column('menu_id');
 
             $diff = array_diff($menu_ids,$menu_ids_data);
+
+            $differ = array_diff([2,3],[2,3,4]);
+Logger::getInstance()->info(json_encode($differ));
+
+
             Logger::getInstance()->info(json_encode($menu_ids));
             Logger::getInstance()->info(json_encode($menu_ids_data));
 
