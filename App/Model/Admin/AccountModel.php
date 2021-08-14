@@ -155,7 +155,7 @@ class AccountModel extends BaseModel
             DbManager::getInstance()->startTransaction();
 
             $account = $this->where('id',$id)->destroy();
-            $accountRole = AccountRoleModel::create()->where('acccount_id',$id)->destroy();
+            $accountRole = AccountRoleModel::create()->where('account_id',$id)->destroy();
 
             if($account && $accountRole){
                 // 提交事务
@@ -170,7 +170,6 @@ class AccountModel extends BaseModel
         } catch(\Throwable  $e){
             // 回滚事务
             DbManager::getInstance()->rollback();
-            Logger::getInstance()->info(json_encode($e->getMessage()));
             return false;
         }
     }
