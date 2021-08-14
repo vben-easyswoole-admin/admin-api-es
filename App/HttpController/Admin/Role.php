@@ -77,6 +77,7 @@ class Role extends AuthBase
     public function update()
     {
         $id = $this->request()->getQueryParam('id');
+        Logger::getInstance()->info(json_encode($id));
         $params = $this->request()->getRequestParam('role_name','remark','status','menu_ids');
 
         $model = new RoleModel();
