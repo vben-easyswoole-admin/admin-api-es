@@ -58,7 +58,7 @@ class AccountModel extends BaseModel
             $params['limit'] = $this->limit;
         }
 
-        $list = $query->order('sort','DESC')
+        $list = $query->order('id','ASC')
             ->limit($params['limit'] * ($params['page'] - 1), $params['limit'])
             ->all()
             ->hidden('pwd');
