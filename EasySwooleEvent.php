@@ -28,7 +28,7 @@ class EasySwooleEvent implements Event
             $response->withHeader('Access-Control-Allow-Origin', $origin);
             $response->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
             $response->withHeader('Access-Control-Allow-Credentials', 'true');
-            $response->withHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, token,query-admin-token');
+            $response->withHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, token');
             if ($request->getMethod() === 'OPTIONS') {
                 $response->withStatus(\EasySwoole\Http\Message\Status::CODE_OK);
                 return false;
