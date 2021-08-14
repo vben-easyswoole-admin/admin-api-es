@@ -54,7 +54,7 @@ class AuthBase extends AdminBase
         if($tokenData['account_id'] != $this->superAdmin){
 
             $accountRoleModel = new AccountRoleModel();
-            $role_ids = $accountRoleModel->getAccountRole($account->id);
+            $role_ids = $accountRoleModel->getRoleStatus($account->id);
             if(!$role_ids){
                 return $this->response_error('账号被封禁');
             }
@@ -63,6 +63,8 @@ class AuthBase extends AdminBase
             $permission = unserialize($this->redisInvokeGet($cache_key));
 
             $urlstr = $this->request()->getUri()->getPath();
+
+            var_dump($permission,$urlstr);
 
             if(!in_array($urlstr,$permission)){
                 $this->response_error('权限不足',401);

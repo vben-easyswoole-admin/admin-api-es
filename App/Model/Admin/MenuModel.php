@@ -100,7 +100,6 @@ class MenuModel extends BaseModel
                 ->order('sort','DESC')
                 ->all()
                 ->toArray();
-
             //默认向上找两层
             $parent_one = [];
             $parent_two = [];
@@ -128,7 +127,7 @@ class MenuModel extends BaseModel
         }else{
             $data = $this->where('status',1)->order('sort','DESC')->all()->toArray();
         }
-        
+
         return Helper::createTree($data);
     }
 

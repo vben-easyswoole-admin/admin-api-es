@@ -41,8 +41,7 @@ class Auth extends AdminBase
         //判断是否超管
         if($account->id != $this->superAdmin){
             $accountRoleModel = new AccountRoleModel();
-            $role_ids = $accountRoleModel->getAccountRole($account->id);
-            var_dump($role_ids);
+            $role_ids = $accountRoleModel->getRoleStatus($account->id);
             if(!$role_ids){
                 return $this->response_error('账号被封禁');
             }
