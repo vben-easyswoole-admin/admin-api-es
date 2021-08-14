@@ -113,7 +113,7 @@ class AccountModel extends BaseModel
             $role_ids = $data['role_ids'];
             unset($data['role_ids']);
 
-            $account = $this->where('id',$data)->update($data);
+            $account = $this->where('id',$id)->update($data);
             $role_ids_data = AccountRoleModel::create()->where('account_id',$id)->column('role_id');
 
             if($role_ids != $role_ids_data){
