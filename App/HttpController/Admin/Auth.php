@@ -42,6 +42,7 @@ class Auth extends AdminBase
         if($account->id != $this->superAdmin){
             $accountRoleModel = new AccountRoleModel();
             $role_ids = $accountRoleModel->getAccountRole($account->id);
+            var_dump($role_ids)
             if(!$role_ids){
                 return $this->response_error('账号被封禁');
             }
@@ -78,6 +79,8 @@ class Auth extends AdminBase
     {
         $roleMenuModel = new RoleMenuModel();
         $menu_ids = $roleMenuModel->getMenuId($role_ids);
+
+        var_dump($menu_ids);
 
         $menuModel = new MenuModel();
         $menu = $menuModel->getTreeList($menu_ids);
