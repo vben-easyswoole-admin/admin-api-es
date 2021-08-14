@@ -33,8 +33,8 @@ class Account extends AuthBase
      * @Param(name="pwd",required="",lengthMin="6",lengthMax="16")
      * @Param(name="nickname",required="",mbLengthMin="2",mbLengthMax="16")
      * @Param(name="email",required="")
-     * @Param(name="remark",required="",mbLengthMax="32")
-     * @Param(name="status",optional="",inArray=[0,1])
+     * @Param(name="remark",optional="",mbLengthMax="32")
+     * @Param(name="status",required="",inArray=[0,1])
      * @Param(name="role_ids",required="")
      */
     public function save()
@@ -76,8 +76,8 @@ class Account extends AuthBase
      * @Param(name="pwd",required="",lengthMin="6",lengthMax="16")
      * @Param(name="nickname",required="",mbLengthMin="2",mbLengthMax="16")
      * @Param(name="email",required="")
-     * @Param(name="remark",required="",mbLengthMax="32")
-     * @Param(name="status",optional="",inArray=[0,1])
+     * @Param(name="remark",optional="",mbLengthMax="32")
+     * @Param(name="status",required="",inArray=[0,1])
      * @Param(name="role_ids",required="")
      */
     public function update()
