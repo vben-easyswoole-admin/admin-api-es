@@ -105,19 +105,7 @@ class RoleModel extends BaseModel
             $role = $this->where('id',$id)->update($data);
             $menu_ids_data = RoleMenuModel::create()->where('role_id',$id)->column('menu_id');
 
-            $diff = array_diff($menu_ids,$menu_ids_data);
-
-            $differ = array_diff_assoc([2,3],[2,3,4]);
-Logger::getInstance()->info(json_encode($differ));
-
-
-           /* Logger::getInstance()->info(json_encode($menu_ids));
-            Logger::getInstance()->info(json_encode($menu_ids_data));
-
-            Logger::getInstance()->info(json_encode($diff));*/
-
-
-            if($diff){
+            if($menu_ids != $menu_ids_data){
                 $de = RoleMenuModel::create()->where('role_id',$id)->destroy();
                 $roleMenu = [];
                 foreach ($menu_ids as $k=>$menu_id){
