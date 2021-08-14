@@ -122,6 +122,12 @@ class Account extends AuthBase
     public function status()
     {
         $id = $this->request()->getQueryParam('id');
+
+        //判断是否超管
+        if($id == $this->superAdmin){
+            return $this->response_error('超级管理员不允许关闭');
+        }
+
         $model = new AccountModel();
         $re = $model->setStatus($id);
 
