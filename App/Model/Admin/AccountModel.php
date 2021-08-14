@@ -7,6 +7,7 @@ namespace App\Model\Admin;
 use App\Model\BaseModel;
 use App\Utility\Helper;
 use EasySwoole\ORM\DbManager;
+use EasySwoole\EasySwoole\Logger;
 
 class AccountModel extends BaseModel
 {
@@ -98,6 +99,7 @@ class AccountModel extends BaseModel
         } catch(\Throwable  $e){
             // 回滚事务
             DbManager::getInstance()->rollback();
+            Logger::getInstance()->info(json_encode($e->getMessage()));
             return false;
         }
 
