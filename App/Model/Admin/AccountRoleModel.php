@@ -13,7 +13,7 @@ class AccountRoleModel extends BaseModel
 
     public function getAccountRole($account_id)
     {
-        return $this->where('status',1)->where('account_id',$account_id)->column('role_id');
+        return $this->where('account_id',$account_id)->column('role_id');
     }
 
 
