@@ -107,14 +107,14 @@ class RoleModel extends BaseModel
 
             $diff = array_diff($menu_ids,$menu_ids_data);
 
-            $differ = array_diff([2,3],[2,3,4]);
+            $differ = array_diff_assoc([2,3],[2,3,4]);
 Logger::getInstance()->info(json_encode($differ));
 
 
-            Logger::getInstance()->info(json_encode($menu_ids));
+           /* Logger::getInstance()->info(json_encode($menu_ids));
             Logger::getInstance()->info(json_encode($menu_ids_data));
 
-            Logger::getInstance()->info(json_encode($diff));
+            Logger::getInstance()->info(json_encode($diff));*/
 
 
             if($diff){
