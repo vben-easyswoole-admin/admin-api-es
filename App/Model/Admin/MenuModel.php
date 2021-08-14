@@ -101,6 +101,7 @@ class MenuModel extends BaseModel
         $menus = $query->order('sort','DESC')
             ->all()
             ->toArray();
+        var_dump($model->lastQuery()->getLastQuery());    
         
         return Helper::createTree($menus);
     }
