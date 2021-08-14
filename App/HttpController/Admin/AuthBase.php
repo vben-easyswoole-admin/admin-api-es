@@ -60,15 +60,15 @@ class AuthBase extends AdminBase
                 return false;
             }
 
+            //从缓存拿权限数据
             $cache_key = $this->cache_permission_key.$tokenData['account_id'];
             $permission = unserialize($this->redisInvokeGet($cache_key));
 
+            //当前请求路径
             $urlstr = $this->request()->getUri()->getPath();
             $url = strtolower(substr($urlstr,1,strlen($urlstr)-1));
 
-            var_dump($permission,$url);
-
-            if(!in_array($urlstr,$permission)){
+            if(!in_array($url,$permission)){
                 $this->response_error('权限不足',401);
                 return false;
             }
