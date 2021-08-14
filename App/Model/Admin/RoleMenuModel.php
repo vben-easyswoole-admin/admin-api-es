@@ -19,6 +19,6 @@ class RoleMenuModel extends BaseModel
 
     public function getRoleMenu($role_id)
     {
-        return $this->where('role_id',$role_ids)->column('menu_id');
+        return $this->where('role_id',$role_id)->column('menu_id');
     }
 }
