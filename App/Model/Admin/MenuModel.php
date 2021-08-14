@@ -94,6 +94,9 @@ class MenuModel extends BaseModel
 
     public function getTreeList($ids = [])
     {
+
+        $parent_one = [];
+        $parent_two = [];
         $query = $this->where('status',1);
         if($ids){
             $query->where('id',$ids,'IN');
@@ -101,9 +104,24 @@ class MenuModel extends BaseModel
         $menus = $query->order('sort','DESC')
             ->all()
             ->toArray();
-        var_dump($query->lastQuery()->getLastQuery());    
+
+        //查找上级
+        $pids = array_union(array_column($menus, 'menu_pid'));
+
+        $parent_one = $this->where('id',$pids,'IN')->order('sort','DESC')
+            ->all()
+            ->toArray();
+        if($parent_one){
+
+            $pid_one = array_union(array_column($menus, 'menu_pid'));
+            $parent_two = $this->where('id',$pid_one,'IN')->order('sort','DESC')
+                ->all()
+                ->toArray();
+        }    
+            
+        $data = array_merge($menus,$parent_one,$parent_two)  
         
-        return Helper::createTree($menus);
+        return Helper::createTree($data);
     }
 
     public function getPermission($menu_ids = [])
