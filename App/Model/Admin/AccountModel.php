@@ -99,7 +99,6 @@ class AccountModel extends BaseModel
         } catch(\Throwable  $e){
             // 回滚事务
             DbManager::getInstance()->rollback();
-            Logger::getInstance()->info(json_encode($e->getMessage()));
             return false;
         }
 
@@ -144,6 +143,7 @@ class AccountModel extends BaseModel
         } catch(\Throwable  $e){
             // 回滚事务
             DbManager::getInstance()->rollback();
+            Logger::getInstance()->info(json_encode($e->getMessage()));
             return false;
         }
     }
