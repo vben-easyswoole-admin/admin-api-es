@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CakePHP 3
 
 /vendor/*
@@ -23,3 +24,10 @@
 /app/Config/core.php
 /app/Config/database.php
 /vendors/*
+=======
+/.git
+/.idea
+/Log
+/vendor
+/Temp
+>>>>>>> 56228be9cbbb199bfed69077f32ae49ab861ab8a
