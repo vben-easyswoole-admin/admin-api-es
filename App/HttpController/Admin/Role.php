@@ -8,6 +8,7 @@ use App\Model\Admin\MenuModel;
 use App\Model\Admin\RoleMenuModel;
 use App\Model\Admin\RoleModel;
 use EasySwoole\HttpAnnotation\AnnotationTag\Param;
+use EasySwoole\EasySwoole\Logger;
 
 class Role extends AuthBase
 {
