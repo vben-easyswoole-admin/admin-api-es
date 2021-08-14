@@ -93,6 +93,8 @@ class RoleModel extends BaseModel
         } catch(\Throwable  $e){
             // 回滚事务
             DbManager::getInstance()->rollback();
+            Logger::getInstance()->info(json_encode($data));
+            Logger::getInstance()->info($e->getMessage());
             return false;
         }
 
