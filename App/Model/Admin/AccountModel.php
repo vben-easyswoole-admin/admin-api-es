@@ -117,9 +117,7 @@ class AccountModel extends BaseModel
             $account = $this->where('id',$data)->update($data);
             $role_ids_data = AccountRoleModel::create()->where('account_id',$id)->column('role_id');
 
-            $diff = array_diff($role_ids,$role_ids_data);
-
-            if($diff){
+            if($role_ids != $role_ids_data){
                 $de = AccountRoleModel::create()->where('acccount_id',$id)->destroy();
                 $accountRole = [];
                 foreach ($role_ids as $k=>$role_id){
