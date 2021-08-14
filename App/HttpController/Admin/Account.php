@@ -30,7 +30,7 @@ class Account extends AuthBase
 
     /**
      * @Param(name="account",required="",lengthMin="4",lengthMax="16")
-     * @Param(name="password",required="",lengthMin="6",lengthMax="16")
+     * @Param(name="pwd",required="",lengthMin="6",lengthMax="16")
      * @Param(name="nickname",required="",mbLengthMin="2",mbLengthMax="16")
      * @Param(name="email",required="")
      * @Param(name="remark",required="",mbLengthMax="32")
@@ -39,7 +39,7 @@ class Account extends AuthBase
      */
     public function save()
     {
-        $params = $this->request()->getRequestParam('account','password','nickname','email','remark','status','role_ids');
+        $params = $this->request()->getRequestParam('account','pwd','nickname','email','remark','status','role_ids');
         $model = new AccountModel();
 
         if($model->getAccountExist($params['account'])){
@@ -73,7 +73,7 @@ class Account extends AuthBase
 
     /**
      * @Param(name="account",required="",lengthMin="4",lengthMax="16")
-     * @Param(name="password",required="",lengthMin="6",lengthMax="16")
+     * @Param(name="pwd",required="",lengthMin="6",lengthMax="16")
      * @Param(name="nickname",required="",mbLengthMin="2",mbLengthMax="16")
      * @Param(name="email",required="")
      * @Param(name="remark",required="",mbLengthMax="32")
@@ -83,7 +83,7 @@ class Account extends AuthBase
     public function update()
     {
         $id = $this->request()->getQueryParam('id');
-        $params = $this->request()->getRequestParam('account','password','nickname','email','remark','status','role_ids');
+        $params = $this->request()->getRequestParam('account','pwd','nickname','email','remark','status','role_ids');
 
         $model = new AccountModel();
 
