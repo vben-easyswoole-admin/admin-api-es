@@ -63,7 +63,7 @@ class AuthBase extends AdminBase
             $cache_key = $this->cache_permission_key.$tokenData['account_id'];
             $permission = unserialize($this->redisInvokeGet($cache_key));
 
-            $urlstr = $this->request()->getUri()->getPath();
+            $urlstr = strtolower(substr($this->request()->getUri()->getPath(),1,-1));
 
             var_dump($permission,$urlstr);
 
