@@ -106,14 +106,14 @@ class MenuModel extends BaseModel
             ->toArray();
 
         //查找上级
-        $pids = array_union(array_column($menus, 'menu_pid'));
+        $pids = array_unique(array_column($menus, 'menu_pid'));
 
         $parent_one = $this->where('id',$pids,'IN')->order('sort','DESC')
             ->all()
             ->toArray();
         if($parent_one){
 
-            $pid_one = array_union(array_column($menus, 'menu_pid'));
+            $pid_one = array_unique(array_column($menus, 'menu_pid'));
             $parent_two = $this->where('id',$pid_one,'IN')->order('sort','DESC')
                 ->all()
                 ->toArray();
