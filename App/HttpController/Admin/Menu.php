@@ -200,7 +200,7 @@ class Menu extends AuthBase
                 break;
         }
 
-        return array_filter($params);
+        return array_filter ($params,function($v){if(is_null($v)){return false;}else{return true;}});
     }
 
 
