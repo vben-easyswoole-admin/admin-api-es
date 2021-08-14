@@ -22,7 +22,7 @@ class Auth extends AdminBase
      */
     public function login()
     {
-        
+
         $params = $this->request()->getRequestParam('account','pwd');
         $account = AccountModel::create()->where('account',$params['account'])->get();
 
@@ -37,17 +37,18 @@ class Auth extends AdminBase
         if($account->status != 1){
             return $this->response_error('账号被封禁');
         }
-        
+
         //判断是否超管
         if($account->id != $this->superAdmin){
-            $role_ids = new AccountRoleModel();
+            $accountRoleModel = new AccountRoleModel();
+            $role_ids = $accountRoleModel->getAccountRole($account->id);
             if(!$role_ids){
                 return $this->response_error('账号被封禁');
             }
-            
+
             //获取菜单和权限
             $menuPermission = $this->getMenuPermission($role_ids);
-            
+
             //将权限写入redis
             $this->redisInvokeSet($this->cache_permission_key.$account->id,serialize($menuPermission['permission']),$this->timeout - 2);
         }else{

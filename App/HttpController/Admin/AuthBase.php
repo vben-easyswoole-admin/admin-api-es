@@ -4,6 +4,8 @@
 namespace App\HttpController\Admin;
 
 
+use App\Model\Admin\AccountModel;
+use App\Model\Admin\AccountRoleModel;
 use App\Utility\Jwt;
 
 class AuthBase extends AdminBase
@@ -20,7 +22,7 @@ class AuthBase extends AdminBase
         $headerToken = $this->request()->getHeader('token');
 
         if(!$headerToken || !isset($headerToken[0]) || !$headerToken[0]){
-            $this->response_error('请登录后再操作1',401);
+            $this->response_error('请登录后再操作',401);
             return false;
         }
 
@@ -39,8 +41,24 @@ class AuthBase extends AdminBase
             return false;
         }
 
-        //效验权限
+
+        $accountModel = new AccountModel();
+        $account = $accountModel->getOne($tokenData['account_id']);
+
+        if(!$account || $account->status != 1){
+            $this->response_error('账户被封禁',401);
+            return false;
+        }
+
+        //非超管效验权限
         if($tokenData['account_id'] != $this->superAdmin){
+
+            $accountRoleModel = new AccountRoleModel();
+            $role_ids = $accountRoleModel->getAccountRole($account->id);
+            if(!$role_ids){
+                return $this->response_error('账号被封禁');
+            }
+
             $cache_key = $this->cache_permission_key.$tokenData['account_id'];
             $permission = unserialize($this->redisInvokeGet($cache_key));
 

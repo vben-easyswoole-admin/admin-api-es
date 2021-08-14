@@ -103,6 +103,12 @@ class Account extends AuthBase
     public function delete()
     {
         $id = $this->request()->getQueryParam('id');
+
+        //判断是否超管
+        if($id == $this->superAdmin){
+            return $this->response_error('超级管理员不允许删除');
+        }
+
         $model = new AccountModel();
         $re = $model->deleteAccount($id);
 
@@ -125,5 +131,6 @@ class Account extends AuthBase
 
         return $this->response_info('设置状态成功');
     }
+
 
 }
