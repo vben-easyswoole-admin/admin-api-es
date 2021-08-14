@@ -4,7 +4,7 @@
 namespace App\HttpController\Admin;
 
 use App\Model\Admin\AccountModel;
-use App\Model\Admin\AccountRoleModel;
+use App\Model\Admin\RoleModel;
 use App\Model\Admin\MenuModel;
 use App\Model\Admin\RoleMenuModel;
 use App\Utility\Jwt;
@@ -40,7 +40,7 @@ class Auth extends AdminBase
 
         //判断是否超管
         if($account->id != $this->superAdmin){
-            $accountRoleModel = new AccountRoleModel();
+            $accountRoleModel = new RoleModel();
             $role_ids = $accountRoleModel->getRoleStatus($account->id);
             if(!$role_ids){
                 return $this->response_error('账号被封禁');
@@ -78,8 +78,6 @@ class Auth extends AdminBase
     {
         $roleMenuModel = new RoleMenuModel();
         $menu_ids = $roleMenuModel->getMenuId($role_ids);
-
-        var_dump($menu_ids);
 
         $menuModel = new MenuModel();
         $menu = $menuModel->getTreeList($menu_ids);

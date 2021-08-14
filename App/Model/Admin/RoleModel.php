@@ -28,6 +28,15 @@ class RoleModel extends BaseModel
         return $query->get();
     }
 
+    public function getRoleStatus($account_id)
+    {
+        return $this->alias('r')
+            ->join('admin_account_role ar','ar.role_id=r.id')
+            ->where('r.status',1)
+            ->where('ar.account_id',$account_id)
+            ->get();
+    }
+
     public function getAll()
     {
         return $this->field('id,role_name')->where('status',1)->all();
