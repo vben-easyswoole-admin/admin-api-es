@@ -30,7 +30,7 @@ class Role extends AuthBase
 
     /**
      * @Param(name="role_name",required="",lengthMin="4",lengthMax="16")
-     * @Param(name="remark",required="",mbLengthMax="32")
+     * @Param(name="remark",optional="",mbLengthMax="32")
      * @Param(name="status",optional="",inArray=[0,1])
      * @Param(name="menu_ids",required="")
      */
@@ -70,7 +70,7 @@ class Role extends AuthBase
 
     /**
      * @Param(name="role_name",required="",lengthMin="4",lengthMax="16")
-     * @Param(name="remark",required="",mbLengthMax="32")
+     * @Param(name="remark",optional="",mbLengthMax="32")
      * @Param(name="status",optional="",inArray=[0,1])
      * @Param(name="menu_ids",required="")
      */
